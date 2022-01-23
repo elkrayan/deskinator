@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+// COLORS
+$brand: #92b8c2;
+$brand-darker: #75A1AC;
+$secondary: #3B5249;
+$white: #ffffff;
+$body: #707070;
+
+.full{
+    width: 100%;
+}
+.half{
+    width: 50%;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    nav{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 2px 22px;
+        border-bottom: 2px solid rgb(241, 241, 241);
+        .brand{
+            a{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                text-decoration: none;
+                font-weight: 600;
+                font-size: .9rem;
+            }
+        }
+        .site-name{
+            h3{
+                font-weight: 600;
+                font-size: 1.2rem;
+            }
+        }
+    }
+    main{
+        width: 100%;
+        max-width: 95%;
+        margin: auto;
+        .module{
+            background-color: $white;
+            padding: 27px 32px;
+            box-shadow: 2px 4px 33px 0px rgba(0, 0, 0, 0.13);
+            border-radius: 22px;
+            margin: 22px 16px 0 10px;
+            height: 100%;
+            .title{
+                font-weight: 600;
+                color: $brand;
+                font-size: 2.1rem;
+            }
+            .content{
+                font-size: 1.6rem;
+                color: $body;
+                span{
+                    font-weight: 600;
+                    color: $brand;
+                }
+            }
+            &.niss{
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                div{
+                    width: 50%;
+                }
+            }
+            &.slide{
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                p{
+                    text-align: center;
+                    font-size: 1.9rem;
+                    color: $brand;
+                    font-weight: 600;
+                    margin: 0 12px;
+                    width: 100%;
+                }
+            }
+        }
+        .middle-module{
+            height: 470px;
+            margin-top: 22px;
+            margin-bottom: 40px;
+            .module{
+                margin: 15px 15px 0 15px;
+                &.weather{
+                    .title{
+                        font-size: 1.4rem;
+                    }
+                    .row{
+                        justify-content: space-around;
+                        align-items: center;
+                        .now-weather{
+                            p{
+                                font-size: 2.8rem;
+                                color: $secondary;
+                                font-weight: 600;
+                            }
+                        }
+                        .weather-detail{
+                            ul{
+                                li{
+                                    color: $body;
+                                    font-size: 1.2rem;
+                                    padding: 8px 12px;
+                                }
+                            }
+                        }
+                    }
+                }
+                &.day-time{
+                    justify-content: space-around;
+                    .day{
+                        font-size: 2.2rem;
+                        text-align: center;
+                        color: $body;
+                    }
+                    .time{
+                        font-size: 3.8rem;
+                        text-align: center;
+                        color: $brand;
+                    }
+                }
+            }
+        }
+    }
+}
