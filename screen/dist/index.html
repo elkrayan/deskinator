@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="http://localhost:8000/css/master.css">
     <link rel="stylesheet" href="http://localhost:8000/css/app.css">
     <link rel="stylesheet" href="./css/app.css">
+    <script src="https://cdn.socket.io/4.4.1/socket.io.min.js" integrity="sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H" crossorigin="anonymous"></script>
     <script src="./js/app.js"></script>
 </head>
 <body>
@@ -39,8 +40,12 @@
             </div>
         </div>
         <div class="row middle-module">
-            <div class="module half">
-                DESK
+            <div class="module half desk" id="desk">
+                <!-- <p>DESK</p>
+                <p>DESK</p>
+                <p>DESK</p>
+                <p>DESK</p>
+                <p class="active">DESK</p> -->
             </div>
             <div class="col half">
                 <div class="module full day-time col">
@@ -54,8 +59,9 @@
                 <div class="module full weather col">
                     <h3 class="title">WEATHER</h3>
                     <div class="row">
-                        <div class="now-weather">
+                        <div class="now-weather row">
                             <p>23°C</p>
+                            <img src="" alt="" id="weatherImg">
                         </div>
                         <div class="weather-detail col">
                             <ul id="weatherDetail">
@@ -66,8 +72,10 @@
             </div>
         </div>
         <div class="module full slide">
-            <p>LOREM IPSUMIPSUMIPSUMIPSUMIPSUMIPSUMIPSUM</p>
+            <p id="messageModule"></p>
         </div>
     </main>
+
+    <audio id="sound" src="sound/notif.mp3"></audio>
 </body>
 </html>

@@ -93,6 +93,20 @@ body{
             margin-bottom: 40px;
             .module{
                 margin: 15px 15px 0 15px;
+                &.desk{
+                    p{
+                        font-size: 2.3rem;
+                        margin: 3px 0;
+                        &.active{
+                            color: $secondary;
+                            font-size: 4.7rem;
+                            font-weight: 600;
+                            animation-name: activeDesk;
+                            animation-duration: 2s;
+                            animation-iteration-count: infinite;
+                        }
+                    }
+                }
                 &.weather{
                     .title{
                         font-size: 1.4rem;
@@ -101,6 +115,7 @@ body{
                         justify-content: space-around;
                         align-items: center;
                         .now-weather{
+
                             p{
                                 font-size: 2.8rem;
                                 color: $secondary;
@@ -133,5 +148,20 @@ body{
                 }
             }
         }
+    }
+}
+
+@keyframes activeDesk{
+    0%{
+        color: $secondary;
+    }
+    33%{
+        color: $brand;
+    }
+    66%{
+        color: $secondary;
+    }
+    100%{
+        color: $brand;
     }
 }
