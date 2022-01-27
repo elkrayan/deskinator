@@ -12,6 +12,10 @@ window.onload = async () => {
     document.getElementById('messageModule').innerHTML = messages[0];
     messageModule(messages);
 
+    //STIB
+    const key = '60102c60c7590c237c2b654e2a29bbb1';
+    await stopDetail(key, '0722');
+
     // SOCKET.IO
     const socket = io('http://localhost:3000');
     let waitingList = [];
@@ -28,7 +32,7 @@ window.onload = async () => {
 
             waitingList.push(desk);
 
-            if(waitingList.length >= 6){
+            if (waitingList.length >= 6) {
                 let index = waitingList.indexOf(deskDisplay[0].getAttribute('data-desk'));
                 waitingList.splice(index, 1);
                 deskDisplay[0].remove();
@@ -48,6 +52,28 @@ window.onload = async () => {
     })
 }
 
+
+async function stopDetail(key, id) {
+    let obj = {};
+    fetch(`https://opendata-api.stib-mivb.be/NetworkDescription/1.0/PointDetail/${id}`, {
+            headers: {
+                'Accept': "aplpication/json",
+                "Authorization": `Bearer ${key}`
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            let gps = data.points[0].gpsCoordinates;
+            let name = data.points[0].name;
+
+            obj = {
+                'stopId': id,
+                'name': name,
+                'gps': gps
+            }
+        })
+        console.log(obj);
+}
 
 
 

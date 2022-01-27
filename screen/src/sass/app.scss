@@ -88,11 +88,14 @@ body{
             }
         }
         .middle-module{
-            height: 470px;
+            height: 700px;
             margin-top: 22px;
             margin-bottom: 40px;
             .module{
                 margin: 15px 15px 0 15px;
+                .title{
+                    font-size: 1.4rem;
+                }
                 &.desk{
                     p{
                         font-size: 2.3rem;
@@ -107,10 +110,71 @@ body{
                         }
                     }
                 }
-                &.weather{
-                    .title{
-                        font-size: 1.4rem;
+                &.day-time{
+                    justify-content: space-around;
+                    .day{
+                        font-size: 2.2rem;
+                        text-align: center;
+                        color: $body;
                     }
+                    .time{
+                        font-size: 3.8rem;
+                        text-align: center;
+                        color: $brand;
+                    }
+                }
+                &.public-transport{
+                    .stop-name{
+                        font-size: 1.2rem;
+                        text-align: center;
+                    }
+                    .line{
+                        flex-wrap: nowrap;
+                        width: calc(25% - 20px);
+                        .line-detail{
+                            align-items: baseline;
+                            .line-id{
+                                display: inline-block;
+                                background-color: red;
+                                color: white;
+                                padding: 8px 10px;
+                                font-weight: bold;
+                                font-size: 1rem;
+                                border-radius: 6px;
+                                margin-right: 5px;
+                                &.line--3{
+                                        background-color: #b4bd10;
+                                        color: white;
+                                }
+                                &.line--4{
+                                    background-color: #F25482;
+                                    color: black;
+                                }
+                                &.line--2{
+                                    background-color: #F57000;
+                                }
+                                &.line--6{
+                                    background-color: #0078AD;
+                                }
+                                &.line--6{
+                                    background-color: #0078AD;
+                                    color: black;
+                                }
+                            }
+                            .line-direction{
+                                font-size: 1.1rem;
+                            }
+                        }
+                        .passing-time{
+                            width: 100%;
+                            li{;
+                                padding: 4px 0;
+                                font-size: 1.1rem;
+                            }
+                        }
+                    }
+                }
+                &.weather{
                     .row{
                         justify-content: space-around;
                         align-items: center;
@@ -131,19 +195,6 @@ body{
                                 }
                             }
                         }
-                    }
-                }
-                &.day-time{
-                    justify-content: space-around;
-                    .day{
-                        font-size: 2.2rem;
-                        text-align: center;
-                        color: $body;
-                    }
-                    .time{
-                        font-size: 3.8rem;
-                        text-align: center;
-                        color: $brand;
                     }
                 }
             }
