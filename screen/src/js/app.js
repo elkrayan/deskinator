@@ -12,6 +12,9 @@ window.onload = async () => {
     document.getElementById('messageModule').innerHTML = messages[0];
     messageModule(messages);
 
+    // STIB
+    await stib();
+
     // SOCKET.IO
     const socket = io('http://localhost:3000');
     let waitingList = [];
@@ -28,7 +31,7 @@ window.onload = async () => {
 
             waitingList.push(desk);
 
-            if(waitingList.length >= 6){
+            if (waitingList.length >= 6) {
                 let index = waitingList.indexOf(deskDisplay[0].getAttribute('data-desk'));
                 waitingList.splice(index, 1);
                 deskDisplay[0].remove();
@@ -48,7 +51,36 @@ window.onload = async () => {
     })
 }
 
+let stib = async () => {
+    let obj = [];
+    fetch(`https://opendata-api.stib-mivb.be/OperationMonitoring/4.0/PassingTimeByPoint/0722`, {
+            headers: {
+                "Authorization": 'Bearer 80577432aecae77c7dd0444315efbd09',
+                'Accept': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            //console.log(data.points);
+            for (let point of data.points){
+                for (let passinngTime of points.passinngTimes){
+                    console.log(passinngTime);
+                }
+            }
+        })
 
+    fetch(`https://opendata-api.stib-mivb.be/NetworkDescription/1.0/PointDetail/0722`, {
+            headers: {
+                "Authorization": 'Bearer 80577432aecae77c7dd0444315efbd09',
+                'Accept': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            document.querySelector('.stop-name').innerHTML =
+                `${data.points[0].name.fr} - ${data.points[0].name.nl}`;
+        })
+}
 
 
 function getHour() {
