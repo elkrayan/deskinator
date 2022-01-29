@@ -12,208 +12,6 @@ module.exports = __webpack_require__(/*! regenerator-runtime */ "./node_modules/
 
 /***/ }),
 
-/***/ "./src/js/app.js":
-/*!***********************!*\
-  !*** ./src/js/app.js ***!
-  \***********************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
- // SOCKET.IO
-
-
-
-function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-window.onload = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-  var queryString, params, port, messages, socket, waitingList, deskDisplay;
-  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
-    while (1) {
-      switch (_context.prev = _context.next) {
-        case 0:
-          queryString = window.location.search;
-          params = new URLSearchParams(queryString);
-          port = params.get('port');
-          console.log(port);
-          _context.next = 6;
-          return getCurrentWeather('brussels');
-
-        case 6:
-          document.querySelector('#date').innerHTML = getDate();
-          setInterval(function () {
-            document.querySelector('#time').innerHTML = getHour();
-          });
-          messages = ["Hello", "World", "Forest", "Covid"];
-          document.getElementById('messageModule').innerHTML = messages[0];
-          messageModule(messages); // SOCKET.IO
-
-          socket = io("https://deskinator.nonante.brussels:".concat(port));
-          waitingList = [];
-          deskDisplay = document.getElementById('desk').children;
-          socket.on('toPublic', function (desk) {
-            if (!waitingList.includes(desk)) {
-              var p = document.createElement('p');
-              p.textContent = desk;
-              p.setAttribute('data-desk', desk);
-              p.classList.add('active');
-              document.getElementById('desk').append(p);
-              document.getElementById('sound').play();
-              waitingList.push(desk);
-
-              if (waitingList.length >= 6) {
-                var index = waitingList.indexOf(deskDisplay[0].getAttribute('data-desk'));
-                waitingList.splice(index, 1);
-                deskDisplay[0].remove();
-                console.log(index, waitingList);
-              }
-            }
-          });
-          socket.on('removreFromList', function (value) {
-            var index = waitingList.indexOf(value);
-            waitingList.splice(index, 1);
-            var displayDesk = document.getElementById('desk').children;
-
-            var _iterator = _createForOfIteratorHelper(displayDesk),
-                _step;
-
-            try {
-              for (_iterator.s(); !(_step = _iterator.n()).done;) {
-                var o = _step.value;
-                if (o.getAttribute('data-desk') == value) o.classList.remove('active');
-              }
-            } catch (err) {
-              _iterator.e(err);
-            } finally {
-              _iterator.f();
-            }
-          });
-
-        case 16:
-        case "end":
-          return _context.stop();
-      }
-    }
-  }, _callee);
-}));
-
-function getHour() {
-  function addZero(i) {
-    if (i < 10) {
-      i = "0" + i;
-    }
-
-    return i;
-  }
-
-  var d = new Date();
-  var h = addZero(d.getHours());
-  var m = addZero(d.getMinutes());
-  var s = addZero(d.getSeconds());
-  var time = h + ":" + m + ":" + s;
-  return time;
-}
-
-function getDate() {
-  var d = new Date();
-  var dayFr = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
-  var monthFr = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septemblre', 'octobre', 'novembre', 'décembre'];
-  var date = dayFr[d.getDay()] + " " + d.getDate() + " " + monthFr[d.getMonth()] + " " + d.getFullYear();
-  return date;
-}
-
-var getCurrentWeather = /*#__PURE__*/function () {
-  var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(city) {
-    var key, lang;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
-      while (1) {
-        switch (_context2.prev = _context2.next) {
-          case 0:
-            key = '45c3e13a8fe167b17de291f1c4d28b8f';
-            lang = 'FR';
-            fetch("http://api.openweathermap.org/data/2.5/weather?q=".concat(city, "&lang=").concat(lang, "&units=metric&appid=").concat(key)).then(function (response) {
-              return response.json();
-            }).then(function (data) {
-              return displatWeather(data);
-            });
-
-          case 3:
-          case "end":
-            return _context2.stop();
-        }
-      }
-    }, _callee2);
-  }));
-
-  return function getCurrentWeather(_x) {
-    return _ref2.apply(this, arguments);
-  };
-}();
-
-var displatWeather = function displatWeather(data) {
-  var temps = ["".concat(Math.round(data.main.temp_min), "\xB0C"), "".concat(Math.round(data.main.temp_max), "\xB0C"), "".concat(Math.round(data.main.feels_like), "\xB0C")];
-  var currentTemp = "".concat(Math.round(data.main.temp), "\xB0C");
-  document.querySelector("html body main div.row.middle-module div.col.half div.module.full.weather.col div.row div.now-weather p").innerHTML = currentTemp;
-
-  var _iterator2 = _createForOfIteratorHelper(data.weather),
-      _step2;
-
-  try {
-    for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-      var weather = _step2.value;
-      document.getElementById('weatherImg').setAttribute('src', "http://openweathermap.org/img/wn/".concat(weather.icon, "@2x.png"));
-    }
-  } catch (err) {
-    _iterator2.e(err);
-  } finally {
-    _iterator2.f();
-  }
-
-  var count = 0;
-  var text = ['min', 'max', 'ressenti'];
-
-  for (var _i = 0, _temps = temps; _i < _temps.length; _i++) {
-    var temp = _temps[_i];
-    var el = document.createElement('li');
-    el.textContent = "".concat(text[count], ": ").concat(temp);
-    document.getElementById('weatherDetail').append(el);
-    count++;
-  }
-};
-
-var messageModule = function messageModule(messages) {
-  var messageCount = 1;
-  setInterval(function () {
-    document.getElementById('messageModule').innerHTML = messages[messageCount++];
-    if (messageCount >= messages.length) messageCount = 0;
-  }, 5000);
-};
-
-/***/ }),
-
-/***/ "./src/sass/app.scss":
-/*!***************************!*\
-  !*** ./src/sass/app.scss ***!
-  \***************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
-
-
-/***/ }),
-
 /***/ "./node_modules/regenerator-runtime/runtime.js":
 /*!*****************************************************!*\
   !*** ./node_modules/regenerator-runtime/runtime.js ***!
@@ -1004,42 +802,7 @@ try {
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = __webpack_modules__;
-/******/ 	
 /************************************************************************/
-/******/ 	/* webpack/runtime/chunk loaded */
-/******/ 	(() => {
-/******/ 		var deferred = [];
-/******/ 		__webpack_require__.O = (result, chunkIds, fn, priority) => {
-/******/ 			if(chunkIds) {
-/******/ 				priority = priority || 0;
-/******/ 				for(var i = deferred.length; i > 0 && deferred[i - 1][2] > priority; i--) deferred[i] = deferred[i - 1];
-/******/ 				deferred[i] = [chunkIds, fn, priority];
-/******/ 				return;
-/******/ 			}
-/******/ 			var notFulfilled = Infinity;
-/******/ 			for (var i = 0; i < deferred.length; i++) {
-/******/ 				var [chunkIds, fn, priority] = deferred[i];
-/******/ 				var fulfilled = true;
-/******/ 				for (var j = 0; j < chunkIds.length; j++) {
-/******/ 					if ((priority & 1 === 0 || notFulfilled >= priority) && Object.keys(__webpack_require__.O).every((key) => (__webpack_require__.O[key](chunkIds[j])))) {
-/******/ 						chunkIds.splice(j--, 1);
-/******/ 					} else {
-/******/ 						fulfilled = false;
-/******/ 						if(priority < notFulfilled) notFulfilled = priority;
-/******/ 					}
-/******/ 				}
-/******/ 				if(fulfilled) {
-/******/ 					deferred.splice(i--, 1)
-/******/ 					var r = fn();
-/******/ 					if (r !== undefined) result = r;
-/******/ 				}
-/******/ 			}
-/******/ 			return result;
-/******/ 		};
-/******/ 	})();
-/******/ 	
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
 /******/ 		// getDefaultExport function for compatibility with non-harmony modules
@@ -1080,68 +843,194 @@ try {
 /******/ 		};
 /******/ 	})();
 /******/ 	
-/******/ 	/* webpack/runtime/jsonp chunk loading */
-/******/ 	(() => {
-/******/ 		// no baseURI
-/******/ 		
-/******/ 		// object to store loaded and loading chunks
-/******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
-/******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
-/******/ 		var installedChunks = {
-/******/ 			"/dist/js/app": 0,
-/******/ 			"dist/css/app": 0
-/******/ 		};
-/******/ 		
-/******/ 		// no chunk on demand loading
-/******/ 		
-/******/ 		// no prefetching
-/******/ 		
-/******/ 		// no preloaded
-/******/ 		
-/******/ 		// no HMR
-/******/ 		
-/******/ 		// no HMR manifest
-/******/ 		
-/******/ 		__webpack_require__.O.j = (chunkId) => (installedChunks[chunkId] === 0);
-/******/ 		
-/******/ 		// install a JSONP callback for chunk loading
-/******/ 		var webpackJsonpCallback = (parentChunkLoadingFunction, data) => {
-/******/ 			var [chunkIds, moreModules, runtime] = data;
-/******/ 			// add "moreModules" to the modules object,
-/******/ 			// then flag all "chunkIds" as loaded and fire callback
-/******/ 			var moduleId, chunkId, i = 0;
-/******/ 			if(chunkIds.some((id) => (installedChunks[id] !== 0))) {
-/******/ 				for(moduleId in moreModules) {
-/******/ 					if(__webpack_require__.o(moreModules, moduleId)) {
-/******/ 						__webpack_require__.m[moduleId] = moreModules[moduleId];
-/******/ 					}
-/******/ 				}
-/******/ 				if(runtime) var result = runtime(__webpack_require__);
-/******/ 			}
-/******/ 			if(parentChunkLoadingFunction) parentChunkLoadingFunction(data);
-/******/ 			for(;i < chunkIds.length; i++) {
-/******/ 				chunkId = chunkIds[i];
-/******/ 				if(__webpack_require__.o(installedChunks, chunkId) && installedChunks[chunkId]) {
-/******/ 					installedChunks[chunkId][0]();
-/******/ 				}
-/******/ 				installedChunks[chunkId] = 0;
-/******/ 			}
-/******/ 			return __webpack_require__.O(result);
-/******/ 		}
-/******/ 		
-/******/ 		var chunkLoadingGlobal = self["webpackChunkdeskinator"] = self["webpackChunkdeskinator"] || [];
-/******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
-/******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
-/******/ 	})();
-/******/ 	
 /************************************************************************/
-/******/ 	
-/******/ 	// startup
-/******/ 	// Load entry module and return exports
-/******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["dist/css/app"], () => (__webpack_require__("./src/js/app.js")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["dist/css/app"], () => (__webpack_require__("./src/sass/app.scss")))
-/******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
-/******/ 	
+var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+(() => {
+"use strict";
+/*!********************************!*\
+  !*** ./resources/js/screen.js ***!
+  \********************************/
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+ // SOCKET.IO
+
+
+
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+window.onload = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+  var queryString, params, port, messages, socket, waitingList, deskDisplay;
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+    while (1) {
+      switch (_context.prev = _context.next) {
+        case 0:
+          queryString = window.location.search;
+          params = new URLSearchParams(queryString);
+          port = params.get('port');
+          console.log(port);
+          _context.next = 6;
+          return getCurrentWeather('brussels');
+
+        case 6:
+          document.querySelector('#date').innerHTML = getDate();
+          setInterval(function () {
+            document.querySelector('#time').innerHTML = getHour();
+          });
+          messages = ["Hello", "World", "Forest", "Covid"];
+          document.getElementById('messageModule').innerHTML = messages[0];
+          messageModule(messages); // SOCKET.IO
+
+          socket = io("https://deskinator.nonante.brussels:".concat(port));
+          waitingList = [];
+          deskDisplay = document.getElementById('desk').children;
+          socket.on('toPublic', function (desk) {
+            if (!waitingList.includes(desk)) {
+              var p = document.createElement('p');
+              p.textContent = desk;
+              p.setAttribute('data-desk', desk);
+              p.classList.add('active');
+              document.getElementById('desk').append(p);
+              document.getElementById('sound').play();
+              waitingList.push(desk);
+
+              if (waitingList.length >= 6) {
+                var index = waitingList.indexOf(deskDisplay[0].getAttribute('data-desk'));
+                waitingList.splice(index, 1);
+                deskDisplay[0].remove();
+                console.log(index, waitingList);
+              }
+            }
+          });
+          socket.on('removreFromList', function (value) {
+            var index = waitingList.indexOf(value);
+            waitingList.splice(index, 1);
+            var displayDesk = document.getElementById('desk').children;
+
+            var _iterator = _createForOfIteratorHelper(displayDesk),
+                _step;
+
+            try {
+              for (_iterator.s(); !(_step = _iterator.n()).done;) {
+                var o = _step.value;
+                if (o.getAttribute('data-desk') == value) o.classList.remove('active');
+              }
+            } catch (err) {
+              _iterator.e(err);
+            } finally {
+              _iterator.f();
+            }
+          });
+
+        case 16:
+        case "end":
+          return _context.stop();
+      }
+    }
+  }, _callee);
+}));
+
+function getHour() {
+  function addZero(i) {
+    if (i < 10) {
+      i = "0" + i;
+    }
+
+    return i;
+  }
+
+  var d = new Date();
+  var h = addZero(d.getHours());
+  var m = addZero(d.getMinutes());
+  var s = addZero(d.getSeconds());
+  var time = h + ":" + m + ":" + s;
+  return time;
+}
+
+function getDate() {
+  var d = new Date();
+  var dayFr = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
+  var monthFr = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septemblre', 'octobre', 'novembre', 'décembre'];
+  var date = dayFr[d.getDay()] + " " + d.getDate() + " " + monthFr[d.getMonth()] + " " + d.getFullYear();
+  return date;
+}
+
+var getCurrentWeather = /*#__PURE__*/function () {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(city) {
+    var key, lang;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            key = '45c3e13a8fe167b17de291f1c4d28b8f';
+            lang = 'FR';
+            fetch("http://api.openweathermap.org/data/2.5/weather?q=".concat(city, "&lang=").concat(lang, "&units=metric&appid=").concat(key)).then(function (response) {
+              return response.json();
+            }).then(function (data) {
+              return displatWeather(data);
+            });
+
+          case 3:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2);
+  }));
+
+  return function getCurrentWeather(_x) {
+    return _ref2.apply(this, arguments);
+  };
+}();
+
+var displatWeather = function displatWeather(data) {
+  var temps = ["".concat(Math.round(data.main.temp_min), "\xB0C"), "".concat(Math.round(data.main.temp_max), "\xB0C"), "".concat(Math.round(data.main.feels_like), "\xB0C")];
+  var currentTemp = "".concat(Math.round(data.main.temp), "\xB0C");
+  document.querySelector("html body main div.row.middle-module div.col.half div.module.full.weather.col div.row div.now-weather p").innerHTML = currentTemp;
+
+  var _iterator2 = _createForOfIteratorHelper(data.weather),
+      _step2;
+
+  try {
+    for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+      var weather = _step2.value;
+      document.getElementById('weatherImg').setAttribute('src', "http://openweathermap.org/img/wn/".concat(weather.icon, "@2x.png"));
+    }
+  } catch (err) {
+    _iterator2.e(err);
+  } finally {
+    _iterator2.f();
+  }
+
+  var count = 0;
+  var text = ['min', 'max', 'ressenti'];
+
+  for (var _i = 0, _temps = temps; _i < _temps.length; _i++) {
+    var temp = _temps[_i];
+    var el = document.createElement('li');
+    el.textContent = "".concat(text[count], ": ").concat(temp);
+    document.getElementById('weatherDetail').append(el);
+    count++;
+  }
+};
+
+var messageModule = function messageModule(messages) {
+  var messageCount = 1;
+  setInterval(function () {
+    document.getElementById('messageModule').innerHTML = messages[messageCount++];
+    if (messageCount >= messages.length) messageCount = 0;
+  }, 5000);
+};
+})();
+
 /******/ })()
 ;

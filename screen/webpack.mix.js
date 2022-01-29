@@ -1,4 +1,6 @@
+const path = require('path')
+const Dotenv = require('dotenv-webpack')
 let mix = require('laravel-mix')
 
-mix.js('src/js/app.js', 'dist/js')
+js('src/js/app.js', 'dist/js')
     .sass('src/sass/app.scss', 'dist/css')

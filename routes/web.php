@@ -18,6 +18,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('auth.login');
 });
+Route::get('/screen', function (){
+    return view('screen.screen');
+});
 
 
 Route::middleware('auth')->group(function () {
