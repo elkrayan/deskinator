@@ -97,6 +97,7 @@ body{
                     font-size: 1.4rem;
                 }
                 &.desk{
+                    position: relative;
                     p{
                         font-size: 2.3rem;
                         margin: 3px 0;
@@ -110,66 +111,43 @@ body{
                         }
                     }
                 }
-                &.day-time{
-                    justify-content: space-around;
-                    .day{
-                        font-size: 2.2rem;
-                        text-align: center;
-                        color: $body;
-                    }
-                    .time{
-                        font-size: 3.8rem;
-                        text-align: center;
-                        color: $brand;
-                    }
-                }
                 &.public-transport{
                     .stop-name{
-                        font-size: 1.2rem;
                         text-align: center;
+                        font-size: 1.2rem;
                     }
-                    .line{
-                        flex-wrap: nowrap;
-                        width: calc(25% - 20px);
-                        .line-detail{
-                            align-items: baseline;
-                            .line-id{
-                                display: inline-block;
-                                background-color: red;
-                                color: white;
-                                padding: 8px 10px;
-                                font-weight: bold;
-                                font-size: 1rem;
-                                border-radius: 6px;
-                                margin-right: 5px;
-                                &.line--3{
+                    .lines{
+                        .line{
+                            width: (calc(25% - 10px));
+                            .line-info{
+                                align-items: baseline;
+                                .line-id{
+                                    display: inline-block;
+                                    padding: 6px 10px;
+                                    background-color: red;
+                                    color: white;
+                                    border-radius: 6px;
+                                    margin-right: 5px;
+                                    &.line--2{
+                                        background-color: #F57000;
+                                    }
+                                    &.line--3{
                                         background-color: #b4bd10;
-                                        color: white;
-                                }
-                                &.line--4{
-                                    background-color: #F25482;
-                                    color: black;
-                                }
-                                &.line--2{
-                                    background-color: #F57000;
-                                }
-                                &.line--6{
-                                    background-color: #0078AD;
-                                }
-                                &.line--6{
-                                    background-color: #0078AD;
-                                    color: black;
+                                    }
+                                    &.line--4{
+                                        background-color: #F25482;
+                                        color: black;
+                                    }
+                                    &.line--6{
+                                        background-color: #0078AD;
+                                    }
                                 }
                             }
-                            .line-direction{
-                                font-size: 1.1rem;
-                            }
-                        }
-                        .passing-time{
-                            width: 100%;
-                            li{;
-                                padding: 4px 0;
-                                font-size: 1.1rem;
+                            ul.passingTime{
+                                li{
+                                    padding: 4px 0;
+                                    font-size: 1.2rem;
+                                }
                             }
                         }
                     }
@@ -195,6 +173,19 @@ body{
                                 }
                             }
                         }
+                    }
+                }
+                &.day-time{
+                    justify-content: space-around;
+                    .day{
+                        font-size: 2.2rem;
+                        text-align: center;
+                        color: $body;
+                    }
+                    .time{
+                        font-size: 3.8rem;
+                        text-align: center;
+                        color: $brand;
                     }
                 }
             }

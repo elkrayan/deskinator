@@ -37,7 +37,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 window.onload = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-  var messages, key, socket, waitingList, deskDisplay;
+  var messages, socket, waitingList, deskDisplay;
   return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
@@ -52,13 +52,12 @@ window.onload = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_rege
           });
           messages = ["Hello", "World", "Forest", "Covid"];
           document.getElementById('messageModule').innerHTML = messages[0];
-          messageModule(messages); //STIB
+          messageModule(messages); // STIB
 
-          key = '60102c60c7590c237c2b654e2a29bbb1';
-          _context.next = 10;
-          return stopDetail(key, '0722');
+          _context.next = 9;
+          return stib();
 
-        case 10:
+        case 9:
           // SOCKET.IO
           socket = io('http://localhost:3000');
           waitingList = [];
@@ -101,7 +100,7 @@ window.onload = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_rege
             }
           });
 
-        case 15:
+        case 14:
         case "end":
           return _context.stop();
       }
@@ -109,45 +108,73 @@ window.onload = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_rege
   }, _callee);
 }));
 
-function stopDetail(_x, _x2) {
-  return _stopDetail.apply(this, arguments);
-}
-
-function _stopDetail() {
-  _stopDetail = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(key, id) {
+var stib = /*#__PURE__*/function () {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
     var obj;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
       while (1) {
-        switch (_context3.prev = _context3.next) {
+        switch (_context2.prev = _context2.next) {
           case 0:
-            obj = {};
-            fetch("https://opendata-api.stib-mivb.be/NetworkDescription/1.0/PointDetail/".concat(id), {
+            obj = [];
+            fetch("https://opendata-api.stib-mivb.be/OperationMonitoring/4.0/PassingTimeByPoint/0722", {
               headers: {
-                'Accept': "aplpication/json",
-                "Authorization": "Bearer ".concat(key)
+                "Authorization": 'Bearer 80577432aecae77c7dd0444315efbd09',
+                'Accept': 'application/json'
               }
             }).then(function (response) {
               return response.json();
             }).then(function (data) {
-              var gps = data.points[0].gpsCoordinates;
-              var name = data.points[0].name;
-              obj = {
-                'stopId': id,
-                'name': name,
-                'gps': gps
-              };
+              //console.log(data.points);
+              var _iterator2 = _createForOfIteratorHelper(data.points),
+                  _step2;
+
+              try {
+                for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+                  var point = _step2.value;
+
+                  var _iterator3 = _createForOfIteratorHelper(points.passinngTimes),
+                      _step3;
+
+                  try {
+                    for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+                      var passinngTime = _step3.value;
+                      console.log(passinngTime);
+                    }
+                  } catch (err) {
+                    _iterator3.e(err);
+                  } finally {
+                    _iterator3.f();
+                  }
+                }
+              } catch (err) {
+                _iterator2.e(err);
+              } finally {
+                _iterator2.f();
+              }
             });
-            console.log(obj);
+            fetch("https://opendata-api.stib-mivb.be/NetworkDescription/1.0/PointDetail/0722", {
+              headers: {
+                "Authorization": 'Bearer 80577432aecae77c7dd0444315efbd09',
+                'Accept': 'application/json'
+              }
+            }).then(function (response) {
+              return response.json();
+            }).then(function (data) {
+              document.querySelector('.stop-name').innerHTML = "".concat(data.points[0].name.fr, " - ").concat(data.points[0].name.nl);
+            });
 
           case 3:
           case "end":
-            return _context3.stop();
+            return _context2.stop();
         }
       }
-    }, _callee3);
+    }, _callee2);
   }));
-  return _stopDetail.apply(this, arguments);
-}
+
+  return function stib() {
+    return _ref2.apply(this, arguments);
+  };
+}();
 
 function getHour() {
   function addZero(i) {
@@ -175,11 +202,11 @@ function getDate() {
 }
 
 var getCurrentWeather = /*#__PURE__*/function () {
-  var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(city) {
+  var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(city) {
     var key, lang;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
       while (1) {
-        switch (_context2.prev = _context2.next) {
+        switch (_context3.prev = _context3.next) {
           case 0:
             key = '45c3e13a8fe167b17de291f1c4d28b8f';
             lang = 'FR';
@@ -191,14 +218,14 @@ var getCurrentWeather = /*#__PURE__*/function () {
 
           case 3:
           case "end":
-            return _context2.stop();
+            return _context3.stop();
         }
       }
-    }, _callee2);
+    }, _callee3);
   }));
 
-  return function getCurrentWeather(_x3) {
-    return _ref2.apply(this, arguments);
+  return function getCurrentWeather(_x) {
+    return _ref3.apply(this, arguments);
   };
 }();
 
@@ -207,18 +234,18 @@ var displatWeather = function displatWeather(data) {
   var currentTemp = "".concat(Math.round(data.main.temp), "\xB0C");
   document.querySelector("html body main div.row.middle-module div.col.half div.module.full.weather.col div.row div.now-weather p").innerHTML = currentTemp;
 
-  var _iterator2 = _createForOfIteratorHelper(data.weather),
-      _step2;
+  var _iterator4 = _createForOfIteratorHelper(data.weather),
+      _step4;
 
   try {
-    for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-      var weather = _step2.value;
+    for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
+      var weather = _step4.value;
       document.getElementById('weatherImg').setAttribute('src', "http://openweathermap.org/img/wn/".concat(weather.icon, "@2x.png"));
     }
   } catch (err) {
-    _iterator2.e(err);
+    _iterator4.e(err);
   } finally {
-    _iterator2.f();
+    _iterator4.f();
   }
 
   var count = 0;
