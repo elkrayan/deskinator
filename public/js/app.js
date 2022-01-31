@@ -262,7 +262,7 @@ Emitter.prototype.hasListeners = function(event){
 // SOCKET.IO
 var io = __webpack_require__(/*! socket.io-client */ "./node_modules/socket.io-client/build/cjs/index.js");
 
-var socket = io('http://localhost:3000');
+var socket = io('http://deskinator.nonante.brussels:3000');
 
 window.onload = function () {
   if (window.location.pathname.replace('/', '') === 'desk') {
@@ -3087,10 +3087,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/scss/screen.scss":
-/*!************************************!*\
-  !*** ./resources/scss/screen.scss ***!
-  \************************************/
+/***/ "./resources/scss/deskinator.scss":
+/*!****************************************!*\
+  !*** ./resources/scss/deskinator.scss ***!
+  \****************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -7142,7 +7142,7 @@ exports.hasBinary = hasBinary;
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
 /******/ 			"/js/app": 0,
-/******/ 			"css/screen": 0,
+/******/ 			"css/deskinator": 0,
 /******/ 			"css/app": 0,
 /******/ 			"css/reset": 0,
 /******/ 			"css/media": 0,
@@ -7196,12 +7196,12 @@ exports.hasBinary = hasBinary;
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["css/screen","css/app","css/reset","css/media","css/master"], () => (__webpack_require__("./resources/js/app.js")))
-/******/ 	__webpack_require__.O(undefined, ["css/screen","css/app","css/reset","css/media","css/master"], () => (__webpack_require__("./resources/scss/master.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/screen","css/app","css/reset","css/media","css/master"], () => (__webpack_require__("./resources/scss/app.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/screen","css/app","css/reset","css/media","css/master"], () => (__webpack_require__("./resources/scss/media.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/screen","css/app","css/reset","css/media","css/master"], () => (__webpack_require__("./resources/scss/screen.scss")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/screen","css/app","css/reset","css/media","css/master"], () => (__webpack_require__("./resources/css/reset.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/deskinator","css/app","css/reset","css/media","css/master"], () => (__webpack_require__("./resources/js/app.js")))
+/******/ 	__webpack_require__.O(undefined, ["css/deskinator","css/app","css/reset","css/media","css/master"], () => (__webpack_require__("./resources/scss/master.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/deskinator","css/app","css/reset","css/media","css/master"], () => (__webpack_require__("./resources/scss/app.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/deskinator","css/app","css/reset","css/media","css/master"], () => (__webpack_require__("./resources/scss/media.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/deskinator","css/app","css/reset","css/media","css/master"], () => (__webpack_require__("./resources/scss/deskinator.scss")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/deskinator","css/app","css/reset","css/media","css/master"], () => (__webpack_require__("./resources/css/reset.css")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

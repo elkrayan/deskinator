@@ -890,13 +890,13 @@ window.onload = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_rege
           document.getElementById('messageModule').innerHTML = messages[0];
           messageModule(messages); // SOCKET.IO
 
-          socket = io("https://deskinator.nonante.brussels:".concat(port));
+          socket = io("http://deskinator.nonante.brussels:".concat(port));
           waitingList = [];
           deskDisplay = document.getElementById('desk').children;
           socket.on('toPublic', function (desk) {
             if (!waitingList.includes(desk)) {
               var p = document.createElement('p');
-              p.textContent = desk;
+              p.textContent = "DESK ".concat(desk);
               p.setAttribute('data-desk', desk);
               p.classList.add('active');
               document.getElementById('desk').append(p);

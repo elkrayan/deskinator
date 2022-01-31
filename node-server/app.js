@@ -19,7 +19,7 @@ io.on('connection', (socket) => {
     socket.on('deskCall', (value) => {
         console.log('\n---------- NEW CALL ----------');
         console.log(`Desk ${value} is calling a new patient`);
-    
+
         // Send to public
         io.emit('toPublic', value);
 
@@ -27,7 +27,7 @@ io.on('connection', (socket) => {
     socket.on('arrivedDesk', (value) => {
         console.log('\n---------- ARRIVED ----------');
         console.log(`Patient at Desk ${value} is arrived`);
-        
+
         // Send to public
         io.emit('removreFromList', value);
     })
@@ -35,7 +35,7 @@ io.on('connection', (socket) => {
 
 // PUBLIC
 app.get('/', (req, res) => {
-    res.send('Hello World 2');
+    res.send('Hello World');
 })
 
 

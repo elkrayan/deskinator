@@ -18,9 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('auth.login');
 });
-Route::get('/screen', function (){
-    return view('screen.screen');
-});
+Route::get('/public', [SubAccountController::class, 'public'])->name('public');
 
 
 Route::middleware('auth')->group(function () {
@@ -40,5 +38,4 @@ Route::middleware('auth')->group(function () {
     Route::get('/sub-account/create', [SubAccountController::class, 'create'])->name('sub-account.create');
     Route::post('/sub-account/create', [SubAccountController::class, 'store'])->name('sub-account.store');
     Route::get('/desk', [SubAccountController::class, 'desk'])->name('desk');
-    Route::get('/public', [SubAccountController::class, 'public'])->name('public');
 });

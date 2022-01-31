@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{{ asset('css/master.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/media.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/screen.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/deskinator.css') }}">
 
     <script src="https://cdn.socket.io/4.4.1/socket.io.min.js"
             integrity="sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H" crossorigin="anonymous">

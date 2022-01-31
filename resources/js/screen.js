@@ -18,13 +18,13 @@ window.onload = async () => {
     messageModule(messages);
 
     // SOCKET.IO
-    const socket = io(`https://deskinator.nonante.brussels:${port}`);
+    const socket = io(`http://deskinator.nonante.brussels:${port}`);
     let waitingList = [];
     let deskDisplay = document.getElementById('desk').children;
     socket.on('toPublic', (desk) => {
         if (!waitingList.includes(desk)) {
             let p = document.createElement('p');
-            p.textContent = desk;
+            p.textContent = `DESK ${desk}`;
             p.setAttribute('data-desk', desk);
             p.classList.add('active');
             document.getElementById('desk').append(p);

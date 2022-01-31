@@ -1,6 +1,6 @@
 // SOCKET.IO
 const io = require('socket.io-client')
-const socket = io('http://localhost:3000')
+const socket = io('http://deskinator.nonante.brussels:3000')
 
 
 window.onload = () => {

@@ -32,6 +32,10 @@ class SubAccountController extends Controller
 
     public function desk(){
 
-        return view('modules.desk');
+        return view('deskinator.desk');
+    }
+    public function public(){
+
+        return view('deskinator.screen');
     }
 }
