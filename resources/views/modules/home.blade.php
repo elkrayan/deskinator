@@ -11,8 +11,8 @@
             <div class="sub-account col">
                 <h3>{{ $sub->name }}</h3>
                 <div class="row">
-                    <a href="" class="btn btn-rounded">Desk</a>
-                    <a href="" class="btn btn-rounded">Public</a>
+                    <a href="/desk" class="btn btn-rounded">Desk</a>
+                    <a href="/public?port=3000"  class="btn btn-rounded">Public</a>
                 </div>
             </div>
         @endforeach
