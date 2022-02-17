@@ -878,15 +878,18 @@ window.onload = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_rege
           params = new URLSearchParams(queryString);
           port = params.get('port');
           console.log(port);
-          _context.next = 6;
+          setInterval(function () {
+            resetPage();
+          });
+          _context.next = 7;
           return getCurrentWeather('brussels');
 
-        case 6:
+        case 7:
           document.querySelector('#date').innerHTML = getDate();
           setInterval(function () {
             document.querySelector('#time').innerHTML = getHour();
           });
-          messages = ["Hello", "World", "Forest", "Covid"];
+          messages = ["Respectez les gestes sanitaire ! Gardez 1.50m devant vous.", "Please, prepare your ID and test-invitation"];
           document.getElementById('messageModule').innerHTML = messages[0];
           messageModule(messages); // SOCKET.IO
 
@@ -931,13 +934,18 @@ window.onload = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_rege
             }
           });
 
-        case 16:
+        case 17:
         case "end":
           return _context.stop();
       }
     }
   }, _callee);
 }));
+
+function resetPage() {
+  var limit = '17:33:00';
+  if (limit === getHour()) location.reload();
+}
 
 function getHour() {
   function addZero(i) {

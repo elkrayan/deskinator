@@ -7,13 +7,20 @@ window.onload = async () => {
     const port = params.get('port');
     console.log(port);
 
+    setInterval(() => {
+        resetPage();
+    });
+
     await getCurrentWeather('brussels');
     document.querySelector('#date').innerHTML = getDate();
     setInterval(() => {
         document.querySelector('#time').innerHTML = getHour();
     });
 
-    let messages = ["Hello", "World", "Forest", "Covid"];
+    let messages = [
+        "Respectez les gestes sanitaire ! Gardez 1.50m devant vous.",
+        "Please, prepare your ID and test-invitation"
+    ];
     document.getElementById('messageModule').innerHTML = messages[0];
     messageModule(messages);
 
@@ -51,6 +58,12 @@ window.onload = async () => {
                 o.classList.remove('active');
         }
     })
+}
+
+function resetPage(){
+    let limit = '17:33:00';
+    if(limit === getHour())
+        location.reload()
 }
 
 

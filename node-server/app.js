@@ -3,6 +3,8 @@ const { createServer } = require('http');
 const { createConnection } = require('net');
 const { Server } = require('socket.io');
 
+const mysql = require('mysql2')
+
 const app = express();
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
@@ -12,7 +14,16 @@ const io = new Server(httpServer, {
     }
 });
 
+const connection = mysql.createConnection({
+    host: 'localhost',
+    user: 'rayan',
+    password: '11Eklate',
+    database: 'deskinator'
+})
+
+
 let waitList = [];
+
 
 io.on('connection', (socket) => {
     console.log(socket.id);
@@ -36,6 +47,15 @@ io.on('connection', (socket) => {
 // PUBLIC
 app.get('/', (req, res) => {
     res.send('Hello World');
+})
+app.get('/sql', (req, res) => {
+    connection.query(
+        `SELECT * FROM statistics`,
+        (err, result) => {
+            console.log(result);
+            res.send(result);
+        }
+    )
 })
 
 

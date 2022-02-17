@@ -31,25 +31,25 @@
 <main>
     <div class="module full niss">
         <div class="text-left">
-            <h2 class="title">TITLE</h2>
+            <h2 class="title">Not Belgian (resident)</h2>
             <p class="content">
-                Please, fill the form on the table and go to <span>DESK 1</span>
+                Please, fill the form on the table behind you and go to <span>DESK 1</span>
             </p>
         </div>
         <div class="text-right">
-            <h2 class="title">TITLE</h2>
+            <h2 class="title">Pas (résident) belge ?</h2>
             <p class="content">
-                Please, fill the form on the table and go to <span>DESK 1</span>
+                Remplissez le formulaire derrière vous, et presentez-vous au <span>DESK 1</span>
             </p>
         </div>
     </div>
     <div class="row middle-module">
-        <div class="module half desk" id="desk">
+        <div class="module half desk" id="desk">{{--
             <p>DESK</p>
             <p>DESK</p>
             <p>DESK</p>
             <p>DESK</p>
-            <p class="active">DESK</p>
+            <p class="active">DESK</p>--}}
         </div>
         <div class="col half">
             <div class="module full day-time col">
